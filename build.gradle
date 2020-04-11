@@ -21,9 +21,9 @@ archivesBaseName = 'zxcvbn'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-wrapper {
-    gradleVersion = '5.5'
-}
+//wrapper {
+//    gradleVersion = '5.5'
+//}
 
 repositories {
     mavenCentral()
