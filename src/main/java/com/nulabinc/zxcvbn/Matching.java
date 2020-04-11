@@ -1,6 +1,7 @@
 package com.nulabinc.zxcvbn;
 
 import com.nulabinc.zxcvbn.matchers.Dictionary;
+import com.nulabinc.zxcvbn.matchers.Keyboard;
 import com.nulabinc.zxcvbn.matchers.Match;
 import com.nulabinc.zxcvbn.matchers.OmnibusMatcher;
 
@@ -14,6 +15,16 @@ public class Matching {
 
     private static final Map<String, Map<String, Integer>> BASE_RANKED_DICTIONARIES = new HashMap<>();
     static {
+        Thread thread = Thread.currentThread();
+        ClassLoader prev = thread.getContextClassLoader();
+        thread.setContextClassLoader(Zxcvbn.class.getClassLoader());
+
+        // runs the static init block
+        Dictionary.FREQUENCY_LISTS.size();
+        Keyboard.ALL_KEYBOARDS.size();
+
+        thread.setContextClassLoader(prev);
+
         for (Map.Entry<String, String[]> frequencyListRef : Dictionary.FREQUENCY_LISTS.entrySet()) {
             String name = frequencyListRef.getKey();
             String[] ls = frequencyListRef.getValue();
